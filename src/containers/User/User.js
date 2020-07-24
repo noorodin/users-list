@@ -13,7 +13,7 @@ function User(props) {
   }, []);
 
   const getUserList = (id) => {
-    setLoading({ loading: true });
+    setLoading(true);
 
     fetch(`https://reqres.in/api/users/${id}`)
       .then(res => res.json())

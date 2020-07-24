@@ -16,7 +16,7 @@ function Users() {
   }, []);
 
   const getUsersList = ({ page, per_page }) => {
-    setLoading({ loading: true });
+    setLoading(true);
 
     fetch(`https://reqres.in/api/users?page=${page}&per_page=${per_page}`)
       .then(res => res.json())
