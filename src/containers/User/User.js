@@ -36,10 +36,10 @@ function User(props) {
         loading ?
           <div className="loading">Loading ...</div>
           :
-          <div className="content-wrapper">
+          <section className="content-wrapper">
             <Link to={`/users`}>Back to Users list</Link>
             <UserInfo user={user} />
-          </div>
+          </section>
       }
     </div>
   );
