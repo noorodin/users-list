@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useParams } from "react-router-dom";
 import UserInfo from '../../components/UserInfo/UserInfo';
+import { UsersContext } from '../../context';
 import './User.css';
 
 function User(props) {
   let { id } = useParams();
+  const usersContext = useContext(UsersContext);
   const [loading, setLoading] = React.useState(false);
   const [user, setUser] = React.useState([]);
 
   React.useEffect(() => {
-    getUserList(id);
+    let users = usersContext.users;
+
+    if (users.length === 0) {
+      getUser(id);
+    } else {
+      let user = users.find(user => user.id == id)
+
+      if (user) {
+        setUser(user);
+      } else {
+        getUser(id);
+      }
+
+    }
   }, []);
 
-  const getUserList = (id) => {
+  const getUser = (id) => {
     setLoading(true);
 
     fetch(`https://reqres.in/api/users/${id}`)

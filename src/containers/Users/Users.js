@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 import UserInfo from '../../components/UserInfo/UserInfo';
-import './Users.css';
-
 import { UsersContext } from '../../context';
+import './Users.css';
 
 function Users() {
   const usersContext = useContext(UsersContext);
@@ -56,6 +55,5 @@ function Users() {
     </div>
   );
 }
-
 
 export default Users;
