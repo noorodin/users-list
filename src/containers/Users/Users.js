@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 import UserInfo from '../../components/UserInfo/UserInfo';
 import './Users.css';
 
+import { UsersContext } from '../../context';
+
 function Users() {
+  const usersContext = useContext(UsersContext);
   const [loading, setLoading] = React.useState(false);
-  const [usersList, setUsersList] = React.useState([]);
 
   React.useEffect(() => {
-    let apiParameters = {
-      "page": 1,
-      "per_page": 8,
-    };
-    getUsersList(apiParameters);
+    if (usersContext.users.length === 0) {
+      let apiParameters = {
+        "page": 1,
+        "per_page": 8,
+      };
+      getUsersList(apiParameters);
+    }
   }, []);
 
   const getUsersList = ({ page, per_page }) => {
@@ -23,7 +27,7 @@ function Users() {
       .then(
         (res) => {
           console.log("response: ", res);
-          setUsersList(res.data);
+          usersContext.updateUsersList(res.data);
           setLoading(false);
         },
         (err) => {
@@ -41,7 +45,7 @@ function Users() {
           :
           <section className="users-list-wrapper">
             {
-              usersList && usersList.map((user, i) => {
+              usersContext.users && usersContext.users.map((user, i) => {
                 return <Link to={`/user/${user.id}`} key={user.id} className="user-wrapper">
                   <UserInfo user={user} />
                 </Link>
@@ -52,5 +56,6 @@ function Users() {
     </div>
   );
 }
+
 
 export default Users;
