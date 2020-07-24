@@ -1,0 +1,38 @@
+.users-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 25px;
+    padding: 45px 15px;
+    border-radius: 5px;
+    width: 220px;
+    background-color: #f5f5f5;
+}
+
+.user:hover {
+    cursor: pointer;
+    background-color: yellowgreen;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 128px;
+    margin-bottom: 25px;
+    box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.4);
+}
+
+.user-name {
+    margin-bottom: 5px;
+}
+
+.first-name{
+    margin-right: 5px;
+}

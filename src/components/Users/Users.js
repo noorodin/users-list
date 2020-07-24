@@ -1,12 +1,14 @@
 import React from 'react';
+import './Users.css';
 
 function Users() {
   const [loading, setLoading] = React.useState(false);
+  const [usersList, setUsersList] = React.useState([]);
 
   React.useEffect(() => {
     let apiParameters = {
-      "page": 2,
-      "per_page": 3,
+      "page": 1,
+      "per_page": 8,
     };
     getUsersList(apiParameters);
   }, []);
@@ -20,6 +22,7 @@ function Users() {
         (res) => {
           console.log("response: ", res);
           setLoading(false);
+          setUsersList(res.data);
         },
         (err) => {
           console.log("error: ", err);
@@ -34,7 +37,20 @@ function Users() {
         loading ?
           <div className="loading">Loading ...</div>
           :
-          <div>Users</div>
+          <section className="users-list-wrapper">
+            {
+              usersList && usersList.map((user, i) => {
+                return <article className="user" key={user.id}>
+                  <img className="avatar" src={user.avatar}></img>
+                  <div className="user-name">
+                    <span className="first-name">{user.first_name}</span>
+                    <span>{user.last_name}</span>
+                  </div>
+                  <span>{user.email}</span>
+                </article>
+              })
+            }
+          </section>
       }
     </div>
   );
