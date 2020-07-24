@@ -42,7 +42,7 @@ function Users() {
           <section className="users-list-wrapper">
             {
               usersList && usersList.map((user, i) => {
-                return <Link to={`/user/${user.id}`} key={user.id}>
+                return <Link to={`/user/${user.id}`} key={user.id} className="user-wrapper">
                   <UserInfo user={user} />
                 </Link>
               })

@@ -7,3 +7,7 @@
 .users-list-wrapper a {
     text-decoration: none;
 }
+
+.user-wrapper {
+    margin: 25px;
+}
