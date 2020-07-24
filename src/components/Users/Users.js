@@ -1,5 +1,6 @@
 import React from 'react';
 import './Users.css';
+import { Link } from "react-router-dom";
 
 function Users() {
   const [loading, setLoading] = React.useState(false);
@@ -21,8 +22,8 @@ function Users() {
       .then(
         (res) => {
           console.log("response: ", res);
-          setLoading(false);
           setUsersList(res.data);
+          setLoading(false);
         },
         (err) => {
           console.log("error: ", err);
@@ -40,14 +41,14 @@ function Users() {
           <section className="users-list-wrapper">
             {
               usersList && usersList.map((user, i) => {
-                return <article className="user" key={user.id}>
-                  <img className="avatar" src={user.avatar}></img>
+                return <Link to={`/user/${user.id}`} className="user" key={user.id}>
+                  <img className="avatar" src={user.avatar} alt={user.first_name}></img>
                   <div className="user-name">
                     <span className="first-name">{user.first_name}</span>
                     <span>{user.last_name}</span>
                   </div>
                   <span>{user.email}</span>
-                </article>
+                </Link>
               })
             }
           </section>
