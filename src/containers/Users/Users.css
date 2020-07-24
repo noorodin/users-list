@@ -1,0 +1,9 @@
+.users-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.users-list-wrapper a {
+    text-decoration: none;
+}

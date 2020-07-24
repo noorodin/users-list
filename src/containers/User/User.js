@@ -1,6 +1,7 @@
 import React from 'react';
-import './User.css';
 import { Link, useParams } from "react-router-dom";
+import UserInfo from '../../components/UserInfo/UserInfo';
+import './User.css';
 
 function User(props) {
   let { id } = useParams();
@@ -35,16 +36,9 @@ function User(props) {
         loading ?
           <div className="loading">Loading ...</div>
           :
-          <div className="user-wrapper">
+          <div className="content-wrapper">
             <Link to={`/users`}>Back to Users list</Link>
-            <section className="user">
-              <img className="avatar" src={user.avatar} alt={user.first_name}></img>
-              <div className="user-name">
-                <span className="first-name">{user.first_name}</span>
-                <span>{user.last_name}</span>
-              </div>
-              <span>{user.email}</span>
-            </section>
+            <UserInfo user={user} />
           </div>
       }
     </div>

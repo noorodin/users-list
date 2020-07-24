@@ -1,6 +1,7 @@
 import React from 'react';
-import './Users.css';
 import { Link } from "react-router-dom";
+import UserInfo from '../../components/UserInfo/UserInfo';
+import './Users.css';
 
 function Users() {
   const [loading, setLoading] = React.useState(false);
@@ -41,13 +42,8 @@ function Users() {
           <section className="users-list-wrapper">
             {
               usersList && usersList.map((user, i) => {
-                return <Link to={`/user/${user.id}`} className="user" key={user.id}>
-                  <img className="avatar" src={user.avatar} alt={user.first_name}></img>
-                  <div className="user-name">
-                    <span className="first-name">{user.first_name}</span>
-                    <span>{user.last_name}</span>
-                  </div>
-                  <span>{user.email}</span>
+                return <Link to={`/user/${user.id}`} key={user.id}>
+                  <UserInfo user={user} />
                 </Link>
               })
             }
